@@ -49,24 +49,21 @@ class UserResource extends Resource
     }
     public static function canViewAny(): bool
     {
-        return auth()->user()->can('ViewAny:User');
+        return auth()->user()->can('Read:User') || auth()->user()->hasRole('super_admin');
     }
 
-    // Who can create a user
     public static function canCreate(): bool
     {
-        return auth()->user()->can('create users');
+        return auth()->user()->can('Create:User') || auth()->user()->hasRole('super_admin');
     }
 
-    // Who can edit a user
     public static function canEdit($record): bool
     {
-        return auth()->user()->can('edit users');
+        return auth()->user()->can('Update:User') || auth()->user()->hasRole('super_admin');
     }
 
-    // Who can delete a user
     public static function canDelete($record): bool
     {
-        return auth()->user()->can('delete users');
+        return auth()->user()->can('Delete:User') || auth()->user()->hasRole('super_admin');
     }
 }

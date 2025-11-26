@@ -49,22 +49,19 @@ class CustomerResource extends Resource
     }
     public static function canViewAny(): bool
     {
-        return auth()->user()->can('ViewAny:Customer');
+        return auth()->user()->can('Read:Customer');
     }
 
-    // Who can create a user
     public static function canCreate(): bool
     {
         return auth()->user()->can('Create:Customer');
     }
 
-    // Who can edit a user
     public static function canEdit($record): bool
     {
-        return auth()->user()->can('Edit:Customer');
+        return auth()->user()->can('Update:Customer');
     }
 
-    // Who can delete a user
     public static function canDelete($record): bool
     {
         return auth()->user()->can('Delete:Customer');
