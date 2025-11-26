@@ -22,6 +22,7 @@ use SolutionForest\FilamentTranslateField\FilamentTranslateFieldPlugin;
 use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
 use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 use App\Filament\Pages\HeaderSettings;
+use Xentixar\WorkflowManager\WorkflowManager;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -31,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
                 ->order(2)
                 ->label('header Settings') // to translate label just use direct translation path like `messages.text.name`
                 ->icon('heroicon-o-globe-alt')
-                 ->page(HeaderSettings::class) // use page / route
+                ->page(HeaderSettings::class) // use page / route
                 ->description('Name, Logo, Site Profile') // to translate label just use direct translation path like `messages.text.name`
                 ->group('General') // to translate label just use direct translation path like `messages.text.name`,
         ]);
@@ -72,7 +73,8 @@ class AdminPanelProvider extends PanelProvider
                 \TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin::make()->allowCreate()->allowClearTranslations(),
                 \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
                     ->allowSiteSettings()
-                    ->allowSocialMenuSettings()
+                    ->allowSocialMenuSettings(),
+                WorkflowManager::make(),
             ]);
     }
 }
