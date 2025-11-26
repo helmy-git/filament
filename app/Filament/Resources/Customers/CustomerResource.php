@@ -47,4 +47,26 @@ class CustomerResource extends Resource
             'edit' => EditCustomer::route('/{record}/edit'),
         ];
     }
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->can('ViewAny:Customer');
+    }
+
+    // Who can create a user
+    public static function canCreate(): bool
+    {
+        return auth()->user()->can('Create:Customer');
+    }
+
+    // Who can edit a user
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->can('Edit:Customer');
+    }
+
+    // Who can delete a user
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->can('Delete:Customer');
+    }
 }
