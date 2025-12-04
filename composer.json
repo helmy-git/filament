@@ -18,8 +18,7 @@
         "solution-forest/filament-translate-field": "^2.0",
         "spatie/laravel-translatable": "^6.11",
         "tomatophp/filament-settings-hub": "^4.0",
-        "tomatophp/filament-translations": "^4.0",
-        "xentixar/workflow-manager": "^2.0"
+        "tomatophp/filament-translations": "^4.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

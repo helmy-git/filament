@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f6dac3719427e7183d60410b205ef7d",
+    "content-hash": "9997ba3b350170ee422476984f3e83be",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -237,16 +237,16 @@
         },
         {
             "name": "bezhansalleh/filament-shield",
-            "version": "4.0.2",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bezhanSalleh/filament-shield.git",
-                "reference": "1c7b21dbac1e80bb05a409c9b13926c13ff210ab"
+                "reference": "e2d33d8e3c5179d6824d26902056c03ee1c8e7d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bezhanSalleh/filament-shield/zipball/1c7b21dbac1e80bb05a409c9b13926c13ff210ab",
-                "reference": "1c7b21dbac1e80bb05a409c9b13926c13ff210ab",
+                "url": "https://api.github.com/repos/bezhanSalleh/filament-shield/zipball/e2d33d8e3c5179d6824d26902056c03ee1c8e7d2",
+                "reference": "e2d33d8e3c5179d6824d26902056c03ee1c8e7d2",
                 "shasum": ""
             },
             "require": {
@@ -319,7 +319,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bezhanSalleh/filament-shield/issues",
-                "source": "https://github.com/bezhanSalleh/filament-shield/tree/4.0.2"
+                "source": "https://github.com/bezhanSalleh/filament-shield/tree/4.0.3"
             },
             "funding": [
                 {
@@ -327,7 +327,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-09-11T02:13:12+00:00"
+            "time": "2025-11-29T20:33:45+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -10724,65 +10724,6 @@
                 }
             ],
             "time": "2024-11-21T01:49:47+00:00"
-        },
-        {
-            "name": "xentixar/workflow-manager",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/xentixar/workflow-manager.git",
-                "reference": "dcf22505622a19f92fee318d904703fb1f4cd4e1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/xentixar/workflow-manager/zipball/dcf22505622a19f92fee318d904703fb1f4cd4e1",
-                "reference": "dcf22505622a19f92fee318d904703fb1f4cd4e1",
-                "shasum": ""
-            },
-            "require": {
-                "filament/support": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Xentixar\\WorkflowManager\\WorkflowManagerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Xentixar\\WorkflowManager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "xentixar",
-                    "email": "xentixar@gmail.com",
-                    "role": "Software Engineer"
-                }
-            ],
-            "description": "A workflow manager plugin for FilamentPHP with PHP enum support.",
-            "keywords": [
-                "enum",
-                "filament",
-                "laravel",
-                "manager",
-                "plugin",
-                "state-machine",
-                "workflow",
-                "workflow-manager",
-                "workflow-manager-plugin"
-            ],
-            "support": {
-                "issues": "https://github.com/xentixar/workflow-manager/issues",
-                "source": "https://github.com/xentixar/workflow-manager/tree/v2.0.1"
-            },
-            "time": "2025-11-02T09:25:30+00:00"
         }
     ],
     "packages-dev": [

@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Users\Schemas;
+namespace App\Filament\Resources\Admins\Schemas;
 
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
-use Filament\Schemas\Schema;
-
-class UserForm
+class AdminForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -28,9 +27,24 @@ class UserForm
                             ->dehydrated(fn($state) => filled($state))
                             ->label('Password'),
                     ]),
- 
+
+                Tab::make('Roles & Permissions')
+                    ->schema([
+                        Select::make('roles')
+                            ->relationship('roles', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->rules(['array'])
+                            ->options(\Spatie\Permission\Models\Role::pluck('name', 'id')->toArray()),
+
+                        Select::make('permissions')
+                            ->relationship('permissions', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->rules(['array'])
+                            ->options(\Spatie\Permission\Models\Permission::pluck('name', 'id')->toArray())
+                    ]),
             ])
         ]);
     }
-
 }

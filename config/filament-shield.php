@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -49,7 +51,7 @@ return [
     |
     */
 
-    'auth_provider_model' => App\Models\User::class,
+    'auth_provider_model' => 'App\\Models\\User',
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +67,7 @@ return [
     'super_admin' => [
         'enabled' => true,
         'name' => 'super_admin',
-        'define_via_gate' => true,
+        'define_via_gate' => false,
         'intercept_gate' => 'before',
     ],
 
@@ -120,15 +122,16 @@ return [
         'merge' => true,
         'generate' => true,
         'methods' => [
-            'read',
-            'create',
-            'update',
-            'delete',
+            'viewAny', 'view', 'create', 'update', 'delete', 'restore',
+            'forceDelete', 'forceDeleteAny', 'restoreAny', 'replicate', 'reorder',
         ],
         'single_parameter_methods' => [
-            'read',
+            'viewAny',
             'create',
             'deleteAny',
+            'forceDeleteAny',
+            'restoreAny',
+            'reorder',
         ],
     ],
 
@@ -145,7 +148,7 @@ return [
 
     'localization' => [
         'enabled' => false,
-        'key' => 'filament-shield::filament-shield',
+        'key' => 'filament-shield::filament-shield.resource_permission_prefixes_labels',
     ],
 
     /*

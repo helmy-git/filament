@@ -23,8 +23,7 @@ use SolutionForest\FilamentTranslateField\FilamentTranslateFieldPlugin;
 use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
 use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 use App\Filament\Pages\HeaderSettings;
-use Xentixar\WorkflowManager\WorkflowManager;
-class AdminPanelProvider extends PanelProvider
+ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -41,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+             ->authGuard('admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -76,7 +76,6 @@ class AdminPanelProvider extends PanelProvider
                 \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
                     ->allowSiteSettings()
                     ->allowSocialMenuSettings(),
-                WorkflowManager::make(),
             ]);
     }
 }

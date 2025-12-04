@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
-use Xentixar\WorkflowManager\Contracts\WorkflowsContract;
-use Xentixar\WorkflowManager\Traits\HasWorkflows;
 use App\Enums\CustomerStatus;
 
-class Customer extends Model implements WorkflowsContract
+class Customer extends Model
 {
-    use HasWorkflows, HasRoles;
+    use HasRoles;
     protected $table = 'customers';
 
     protected $fillable = [
