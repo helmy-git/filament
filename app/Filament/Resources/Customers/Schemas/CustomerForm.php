@@ -31,11 +31,7 @@ class CustomerForm
                 //             TextInput::make('name.ar')->label('Name (AR)'),
                 //         ]),
                 //     ]),
-
-                StateSelect::make('status')
-                    ->setWorkflowForModel(Customer::class)
-                    // ->setRole('admin')       // or another role from config
-                    ->required(),
+ 
             ]);
     }
 }

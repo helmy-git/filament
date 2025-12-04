@@ -49,21 +49,21 @@ class CustomerResource extends Resource
     }
     public static function canViewAny(): bool
     {
-        return auth()->user()->can('Read:Customer');
+        return auth()->user()->can('Read:Customer')  || auth()->user()->hasRole('super_admin');
     }
 
     public static function canCreate(): bool
     {
-        return auth()->user()->can('Create:Customer');
+        return auth()->user()->can('Create:Customer') || auth()->user()->hasRole('super_admin');
     }
 
     public static function canEdit($record): bool
     {
-        return auth()->user()->can('Update:Customer');
+        return auth()->user()->can('Update:Customer') || auth()->user()->hasRole('super_admin');
     }
 
     public static function canDelete($record): bool
     {
-        return auth()->user()->can('Delete:Customer');
+        return auth()->user()->can('Delete:Customer') || auth()->user()->hasRole('super_admin');
     }
 }

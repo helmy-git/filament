@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Language;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 
@@ -20,12 +22,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->locales(['en', 'ar', 'fr'])
-                ->flags([])
+        try {
+            $locales = Cache::remember('active_languages', 0, fn() => Language::active()->orderBy('order')->pluck('code')->toArray());
+        } catch (\Exception $e) {
+            $locales = ['en', 'ar'];
+        }
+        LanguageSwitch::configureUsing(fn(LanguageSwitch $switch) => $switch->locales($locales)
+            ->flags([])
 
-                ->visible(outsidePanels: true);
-            $switch->flags([]);
-        });
+            ->visible(outsidePanels: true));
     }
 }
