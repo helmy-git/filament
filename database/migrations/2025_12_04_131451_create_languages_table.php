@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workflows', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->string('model_class')->nullable();
-            $table->string('workflow_name')->unique();
-            $table->string('role')->nullable();
+            $table->string('code', 5)->unique(); // en, ar, fr
+            $table->string('name'); // English, Arabic, French
+            $table->boolean('is_active')->default(true);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workflows');
+        Schema::dropIfExists('languages');
     }
 };

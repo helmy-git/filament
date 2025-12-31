@@ -11,6 +11,8 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -23,7 +25,6 @@ use SolutionForest\FilamentTranslateField\FilamentTranslateFieldPlugin;
 use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
 use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 use App\Filament\Pages\HeaderSettings;
-use Xentixar\WorkflowManager\WorkflowManager;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -41,10 +42,15 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->authGuard('admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->renderHook(
+                PanelsRenderHook::USER_MENU_BEFORE,
+                fn (): \Illuminate\View\View => view('filament.admin.header-link')
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -76,7 +82,7 @@ class AdminPanelProvider extends PanelProvider
                 \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
                     ->allowSiteSettings()
                     ->allowSocialMenuSettings(),
-                WorkflowManager::make(),
-            ]);
+            ])
+            ;
     }
 }

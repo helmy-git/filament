@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Language;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -12,6 +13,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Sitemap\SitemapGenerator;
 use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
@@ -76,7 +78,7 @@ class HeaderSettings extends SettingsPage
         return $data;
     }
 
-     protected function processSettingsData(array $data): array
+    protected function processSettingsData(array $data): array
     {
         $processed = [];
 
@@ -87,11 +89,9 @@ class HeaderSettings extends SettingsPage
 
             if (is_array($value) && $this->isTranslatableField($value)) {
                 $processed[$key] = $value;
-            }
-            elseif (is_array($value)) {
+            } elseif (is_array($value)) {
                 $processed[$key] = $value;
-            }
-            else {
+            } else {
                 $processed[$key] = $value;
             }
         }
@@ -101,7 +101,11 @@ class HeaderSettings extends SettingsPage
 
     protected function isTranslatableField(array $value): bool
     {
-        $locales = config('app.locales', ['en', 'ar', 'fr']);
+        try {
+            $locales = Cache::remember('active_languages', 3600, fn() => Language::active()->orderBy('order')->pluck('code')->toArray());
+        } catch (\Exception $e) {
+            $locales = ['en', 'ar'];
+        }
 
         if (empty($value)) {
             return false;
@@ -142,12 +146,12 @@ class HeaderSettings extends SettingsPage
                                     ->defaultItems(0)
                                     ->collapsible()
                                     ->reorderable()
-                                    ->itemLabel(fn (array $state): ?string => $state['text'] ?? null)
+                                    ->itemLabel(fn(array $state): ?string => $state['text'] ?? null)
                                     ->addActionLabel('Add Menu Item'),
                             ]),
                     ])
                     ->columns(2),
-                    
+
                 Section::make(trans('filament-settings-hub::messages.settings.site.site_images'))
                     ->description(trans('filament-settings-hub::messages.settings.site.site_logo_description'))
                     ->schema([
