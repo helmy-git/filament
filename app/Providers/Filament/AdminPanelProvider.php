@@ -48,8 +48,8 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
             ->renderHook(
-                PanelsRenderHook::USER_MENU_BEFORE,
-                fn (): \Illuminate\View\View => view('filament.admin.header-link')
+                PanelsRenderHook::GLOBAL_SEARCH_AFTER,
+                fn(): \Illuminate\View\View => view('filament.admin.header-link')
             )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -83,6 +83,6 @@ class AdminPanelProvider extends PanelProvider
                     ->allowSiteSettings()
                     ->allowSocialMenuSettings(),
             ])
-            ;
+        ;
     }
 }
