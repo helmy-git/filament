@@ -47,23 +47,4 @@ class UserResource extends Resource
             'edit' => EditUser::route('/{record}/edit'),
         ];
     }
-    public static function canViewAny(): bool
-    {
-        return auth()->user()->can('Read:User') || auth()->user()->hasRole('super_admin');
-    }
-
-    public static function canCreate(): bool
-    {
-        return auth()->user()->can('Create:User') || auth()->user()->hasRole('super_admin');
-    }
-
-    public static function canEdit($record): bool
-    {
-        return auth()->user()->can('Update:User') || auth()->user()->hasRole('super_admin');
-    }
-
-    public static function canDelete($record): bool
-    {
-        return auth()->user()->can('Delete:User') || auth()->user()->hasRole('super_admin');
-    }
 }

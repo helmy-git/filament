@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+   $admin = Auth::guard('admin')->user();
+   return $admin->getRoleNames();
+
     return view('welcome');
 });
 

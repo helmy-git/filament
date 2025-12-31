@@ -14,57 +14,57 @@ class CustomerPolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:Customer');
+        return $authUser->can('ViewAny:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function view(AuthUser $authUser, Customer $customer): bool
     {
-        return $authUser->can('View:Customer');
+        return $authUser->can('View:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:Customer');
+        return $authUser->can('Create:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function update(AuthUser $authUser, Customer $customer): bool
     {
-        return $authUser->can('Update:Customer');
+        return $authUser->can('Update:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function delete(AuthUser $authUser, Customer $customer): bool
     {
-        return $authUser->can('Delete:Customer');
+        return $authUser->can('Delete:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function restore(AuthUser $authUser, Customer $customer): bool
     {
-        return $authUser->can('Restore:Customer');
+        return $authUser->can('Restore:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function forceDelete(AuthUser $authUser, Customer $customer): bool
     {
-        return $authUser->can('ForceDelete:Customer');
+        return $authUser->can('ForceDelete:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ForceDeleteAny:Customer');
+        return $authUser->can('ForceDeleteAny:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('RestoreAny:Customer');
+        return $authUser->can('RestoreAny:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function replicate(AuthUser $authUser, Customer $customer): bool
     {
-        return $authUser->can('Replicate:Customer');
+        return $authUser->can('Replicate:Customer') || $authUser->hasRole('super_admin');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('Reorder:Customer');
+        return $authUser->can('Reorder:Customer') || $authUser->hasRole('super_admin');
     }
 
 }

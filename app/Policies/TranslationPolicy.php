@@ -14,57 +14,57 @@ class TranslationPolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:Translation');
+        return $authUser->can('ViewAny:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function view(AuthUser $authUser, Translation $translation): bool
     {
-        return $authUser->can('View:Translation');
+        return $authUser->can('View:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:Translation');
+        return $authUser->can('Create:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function update(AuthUser $authUser, Translation $translation): bool
     {
-        return $authUser->can('Update:Translation');
+        return $authUser->can('Update:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function delete(AuthUser $authUser, Translation $translation): bool
     {
-        return $authUser->can('Delete:Translation');
+        return $authUser->can('Delete:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function restore(AuthUser $authUser, Translation $translation): bool
     {
-        return $authUser->can('Restore:Translation');
+        return $authUser->can('Restore:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function forceDelete(AuthUser $authUser, Translation $translation): bool
     {
-        return $authUser->can('ForceDelete:Translation');
+        return $authUser->can('ForceDelete:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ForceDeleteAny:Translation');
+        return $authUser->can('ForceDeleteAny:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('RestoreAny:Translation');
+        return $authUser->can('RestoreAny:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function replicate(AuthUser $authUser, Translation $translation): bool
     {
-        return $authUser->can('Replicate:Translation');
+        return $authUser->can('Replicate:Translation') || $authUser->hasRole('super_admin');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('Reorder:Translation');
+        return $authUser->can('Reorder:Translation') || $authUser->hasRole('super_admin');
     }
 
 }

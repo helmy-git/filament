@@ -14,57 +14,57 @@ class WorkflowPolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ViewAny:Workflow');
+        return $authUser->can('ViewAny:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function view(AuthUser $authUser, Workflow $workflow): bool
     {
-        return $authUser->can('View:Workflow');
+        return $authUser->can('View:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('Create:Workflow');
+        return $authUser->can('Create:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function update(AuthUser $authUser, Workflow $workflow): bool
     {
-        return $authUser->can('Update:Workflow');
+        return $authUser->can('Update:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function delete(AuthUser $authUser, Workflow $workflow): bool
     {
-        return $authUser->can('Delete:Workflow');
+        return $authUser->can('Delete:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function restore(AuthUser $authUser, Workflow $workflow): bool
     {
-        return $authUser->can('Restore:Workflow');
+        return $authUser->can('Restore:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function forceDelete(AuthUser $authUser, Workflow $workflow): bool
     {
-        return $authUser->can('ForceDelete:Workflow');
+        return $authUser->can('ForceDelete:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('ForceDeleteAny:Workflow');
+        return $authUser->can('ForceDeleteAny:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('RestoreAny:Workflow');
+        return $authUser->can('RestoreAny:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function replicate(AuthUser $authUser, Workflow $workflow): bool
     {
-        return $authUser->can('Replicate:Workflow');
+        return $authUser->can('Replicate:Workflow') || $authUser->hasRole('super_admin');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('Reorder:Workflow');
+        return $authUser->can('Reorder:Workflow') || $authUser->hasRole('super_admin');
     }
 
 }
